@@ -1,0 +1,293 @@
+.certificate {
+    min-width: 210mm;
+    width: 210mm;
+    height: 295.5mm;
+    min-height: 295.5mm;
+    margin: 5px auto;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    background: #561d23;
+
+    align-items: center;
+}
+
+.certificate-inner {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* background: #fff; */
+    gap: 15px;
+    z-index: 5;
+    margin-left: -90px;
+    margin-top: -130px;
+    font-family: sans-serif;
+}
+
+.prosent {
+    border-bottom: 2px solid #000000;
+}
+
+.certificate h1 {
+    text-align: center;
+    font-size: 75px;
+    margin-bottom: 0px;
+}
+
+.borderTop {
+    width: 100%;
+    height: 40px;
+    border: 13px double #3b3b3b;
+    border-bottom: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.borderTop h1 {
+    position: absolute;
+    top: -30px;
+    left: 45px;
+    text-align: center;
+    font-size: 80px;
+    margin-bottom: 0px;
+    padding: 30px 0 0 0;
+    background: #ffffff;
+}
+
+.certificate>h2 {
+    text-align: center;
+    font-size: 19px;
+    margin-bottom: 40px;
+}
+
+.idBox {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 40px;
+    display: flex;
+    gap: 5px;
+    position: absolute;
+    left: 200px;
+    top: 220px;
+}
+
+.idBox>h2:nth-child(2) {
+    border-bottom: 2px solid #000;
+}
+
+.certificate-inner>p {
+    font-size: 18px;
+    line-height: 35px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.signature {
+    text-align: right;
+    margin-top: 10px;
+    display: flex;
+    gap: 5px;
+    width: 100%;
+    position: relative;
+}
+
+.signature>p {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.stamp {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+}
+
+.bor {
+    width: 85%;
+    position: relative;
+    border-bottom: 2px solid #3b3b3b;
+}
+
+.bor>h2 {
+    text-align: center;
+    font-family: "Yellowtail", cursive;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: .5px;
+    font-size: 30px;
+}
+
+.bor>b {
+    position: absolute;
+    right: -6px;
+    top: 18px;
+    background: #fff;
+    padding: 6px;
+}
+
+.border_box {
+    width: 475px;
+    padding: 4px 0px;
+    position: relative;
+    border-top: 5px dotted #3b3b3b;
+    border-bottom: 5px dotted #3b3b3b;
+}
+
+.border_box_right {
+    width: 100%;
+    height: 30px;
+    background: -moz-radial-gradient(circle, #ff1d1dc8 0%, #570000 100%);
+    background: -webkit-radial-gradient(circle, #ff1d1dc8 0%, #570000 100%);
+    background: radial-gradient(circle, #ff1d1dc8 0%, #570000 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#3f5efb", GradientType=1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    word-spacing: 3px;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.border_box_right1,
+.border_box_right2 {
+    background: #ffffff;
+    width: 25px;
+    height: 25px;
+    transform: rotate(45deg);
+}
+
+.border_box_right1 {
+    position: absolute;
+    top: 6px;
+    right: -15px;
+}
+
+.border_box_right2 {
+    position: absolute;
+    top: 6px;
+    left: -15px;
+}
+
+.pech {
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -28px;
+}
+
+.pech_img {
+    position: absolute;
+    top: -50px;
+    left: 170px;
+    width: 210px;
+    height: 200px;
+}
+
+.pech>img {
+    width: 100%;
+    height: 100%;
+}
+
+.our {
+    background: #561d23;
+}
+
+.our2 {
+    position: absolute;
+    background: #ffffff;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 160px 700px 0;
+    z-index: 2;
+}
+
+.our3 {
+    position: absolute;
+    width: 50px;
+    height: 600px;
+    border-right: 40px solid #ff0015;
+    right: 0;
+    bottom: 120px;
+    transform: rotate(42deg);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.our4 {
+    position: absolute;
+    width: 120%;
+    height: 100%;
+    right: 0;
+    top: -10px;
+    left: -150px;
+    border-radius: 10% 230% 770% 0%;
+    transform: rotate(-7deg);
+    z-index: 4;
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px inset, rgba(0, 0, 0, 0.676) -3px -7px 40px 25px inset;
+}
+
+.our5 {
+    position: absolute;
+    width: 73%;
+    height: 100px;
+    border-radius: 0 200px 0 0;
+    top: -10px;
+    left: 0px;
+    background: #ffffff;
+    z-index: 5;
+
+}
+
+.imageLogo {
+    position: absolute;
+    right: -10px;
+    bottom: -50px;
+    z-index: 4;
+}
+
+.QRBOX {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    bottom: -70px;
+    left: 40px;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2px;
+}
+
+.sanaBoz {
+    position: absolute;
+    width: 130px;
+    height: 30px;
+    bottom: -113px;
+    left: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2px;
+}
+
+.sanaBoz>b:nth-child(2) {
+    text-wrap: nowrap;
+    font-size: 12px;
+    border-top: 2px solid rgb(45, 45, 45);
+}

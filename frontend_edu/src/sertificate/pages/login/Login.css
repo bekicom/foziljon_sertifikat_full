@@ -1,0 +1,154 @@
+.login {
+  width: 100%;
+  height: 100vh;
+  background: #e5e5e5;
+  display: flex;
+  align-items: center;
+  padding-top: 15%;
+  flex-direction: column;
+  font-family: sans-serif;
+}
+
+.login>form {
+  margin-top: 5px;
+  /* border: 1px solid #000; */
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 4px;
+  /* background: #fff; */
+}
+
+.login>form .login__input {
+  width: 100%;
+  height: 50px;
+  text-indent: 10px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  color: #fff;
+  background: #224957;
+  border: 2px solid transparent;
+  transition: all 0.155s linear;
+  display: flex;
+  align-items: center;
+}
+
+.login>form .login__input svg {
+  font-size: 25px;
+  width: 50px;
+
+}
+
+
+.login>form .login__input input {
+  width: 100%;
+  height: 100%;
+  text-indent: 5px;
+  font-size: 14px;
+  outline: none;
+  border: none;
+}
+
+.login>form .login__input:focus {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.logbtn {
+  width: 100%;
+  height: 40px;
+  margin: 20px auto;
+  border-radius: 4px;
+  background: #224957;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.155s linear;
+  border: 2px solid #224957;
+}
+
+.btnOutLog {
+  width: 100%;
+  height: 35px;
+  border-radius: 4px;
+  background: #ffffff;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.155s linear;
+  border: 2px solid #224957;
+  margin-top: 5px;
+
+}
+
+.logbtn:hover {
+  border: 2px solid #224957;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.eye {
+  background: #fff;
+  height: 100%;
+  width: 40px;
+  color: #224957;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 450px) {
+  .login>form {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 280px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 4px;
+  }
+
+  .login>h1 {
+    font-size: 24px;
+    margin-top: 50px;
+  }
+
+  .login>form .login__input {
+    margin-bottom: 25px;
+  }
+
+  .logbtn {
+    width: 100%;
+    height: 44px;
+    margin: 0;
+    margin-top: 5px;
+    border-radius: 4px;
+    font-size: 17px;
+    background: #224957;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.155s linear;
+    border: 2px solid #224957;
+  }
+
+  .btnOutLog {
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    background: #ffffff;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.155s linear;
+    border: 2px solid #224957;
+    margin-top: 25px;
+
+  }
+
+}

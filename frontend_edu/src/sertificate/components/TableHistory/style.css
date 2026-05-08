@@ -1,0 +1,221 @@
+::-webkit-scrollbar {
+    width: 6px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #bebebe;
+    border-radius: 15px;
+}
+
+.allLicense {
+    width: 90%;
+    height: 500px;
+    margin: 50px auto;
+    background: #F7F7F7;
+    border-radius: 10px;
+    overflow: auto;
+}
+
+.allLicenseContainer {
+    width: calc(100% - 40px);
+    margin: auto;
+    padding: 30px 0;
+}
+
+.allLicenseTitle {
+    color: dodgerblue;
+}
+
+.driverTableContainer {
+    width: 100%;
+}
+
+.driverTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.driverTableHead th {
+    text-align-last: left;
+    padding: 16px;
+    border-bottom: 2px solid #999;
+    text-wrap: nowrap;
+
+}
+
+.driverTableBody td {
+    border: 1px solid #e4e3e3;
+    text-wrap: nowrap;
+
+    padding: 16px;
+    position: relative;
+}
+
+.driverTableBody tr:nth-child(even) {
+    background: #00000010;
+}
+
+.driverTableBody tr:hover {
+    background: #00000008;
+}
+
+.driverTableBodyDelBtn {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    background: crimson;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+}
+
+.driverTableBodyDelBtn svg {
+    font-size: 18px;
+    margin-right: 6px;
+}
+
+.driverTableBodyPDFBtn {
+    background: dodgerblue;
+}
+
+.driverTableBodyDelBtn:hover {
+    opacity: .7;
+}
+
+
+.driverModalMain {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.driverModalContainer {
+    width: 500px;
+    height: 300px;
+    background: #fff;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* position: relative; */
+    z-index: 12;
+    animation: modalTable1 .5s forwards;
+    opacity: 0;
+    transform: translateY(-50px);
+}
+
+@keyframes modalTable1 {
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.driverModalContainer svg {
+    font-size: 50px;
+    margin-bottom: 20px;
+    color: crimson;
+}
+
+.driverModalContainer h3 {
+    padding-bottom: 20px;
+    color: dodgerblue;
+    font-weight: 400;
+    font-size: 24px;
+}
+
+.driverModalContainer button {
+    width: 120px;
+    height: 30px;
+    margin: 0 10px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: crimson;
+    cursor: pointer;
+}
+
+.driverModalContainer button:last-child {
+    background: dodgerblue;
+}
+
+.driverModalContainer button:hover {
+    opacity: .7;
+}
+
+.driverModalHide {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 11;
+    background: #00000033;
+    animation: modalTableCon1 .5s forwards;
+    opacity: 0;
+}
+
+
+.SearchBar {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.SearchBar>div {
+    width: 40%;
+}
+
+@keyframes modalTableCon1 {
+    to {
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .driverTableBodyDelBtn {
+        padding: 6px 10px;
+        border: none;
+        border-radius: 5px;
+        background: crimson;
+        color: #fff;
+        cursor: pointer;
+        /* position: absolute; */
+        /* top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); */
+        display: flex;
+        align-items: center;
+    }
+
+    .SearchBar>div {
+        width: 100%;
+    }
+
+    .allLicenseTitle {
+        color: dodgerblue;
+        font-size: 15px;
+        display: none;
+    }
+
+    .driverTableBodyPDFBtn {
+        background: dodgerblue;
+    }
+}

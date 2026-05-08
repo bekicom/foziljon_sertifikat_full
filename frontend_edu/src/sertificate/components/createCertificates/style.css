@@ -1,0 +1,279 @@
+.pdf_formMain {
+    width: 90%;
+    height: 430px;
+    margin: 20px auto;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.pdf_formFISH {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin: 25px 0px;
+}
+
+.pdf_formFISHitem {
+    width: 100%;
+    margin: 0px 20px;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.pdf_formFISHitem select {
+    width: 100%;
+}
+
+
+.pdf_inputFISH {
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #62b1ff;
+    font-size: 16px;
+    text-indent: 10px;
+    outline: none;
+}
+
+.pdf_inputFISHCat {
+    height: 40px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #62b1ff;
+    font-size: 16px;
+    text-indent: 10px;
+    outline: none;
+}
+
+.pdf_inputFISHEng {
+    height: 40px;
+    width: 30%;
+    border-radius: 5px;
+    border: 1px solid #62b1ff;
+    font-size: 16px;
+    text-indent: 10px;
+    outline: none;
+    display: none;
+}
+
+.RusEng {
+    display: flex;
+}
+
+.pdf_inputFISHRus {
+    height: 40px;
+    width: 55%;
+    margin-left: 4px;
+    border-radius: 5px;
+    border: 1px solid #62b1ff;
+    font-size: 16px;
+    text-indent: 10px;
+    outline: none;
+    display: none;
+}
+
+.pdf_inputFISHEngLev {
+    height: 40px;
+    width: 30%;
+    border-radius: 5px;
+    border: 1px solid #62b1ff;
+    font-size: 16px;
+    text-indent: 10px;
+    outline: none;
+    display: none;
+}
+
+.engopen {
+    display: block;
+
+}
+
+.levopen {
+    display: block;
+
+}
+
+.rusopen {
+    display: block;
+
+}
+
+.valid_dates {
+    width: 100%;
+    height: 40px;
+    margin: 5px 0px;
+    border-radius: 5px;
+    border: 1px solid #62b1ff;
+    font-size: 16px;
+    text-indent: 10px;
+    outline: none;
+}
+
+.pdf_formFISHitem>label {
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.pdf_formMainTitle {
+    color: dodgerBlue;
+    padding: 30px 20px;
+}
+
+.pdf_formMainDesc {
+    width: 80%;
+    color: red;
+    display: flex;
+    align-items: center;
+    padding: 0px 20px;
+}
+
+.pdf_formMainDesc>svg {
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.pdf_viewBtn {
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: dodgerblue;
+    color: #fff;
+}
+
+
+@media screen and (max-width: 370px) {
+    .pdf_formMainTitle {
+        color: dodgerBlue;
+        padding: 30px 20px;
+        font-size: 22px;
+    }
+}
+
+.pdf_controllersWrapper {
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    height: 60px;
+
+}
+
+.pdf_controllers {
+    padding: 8px 25px;
+    border: none;
+    border-radius: 5px;
+    background-color: dodgerblue;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.pdf_controllers:hover {
+    background: #107ce9;
+    cursor: pointer;
+}
+
+.pdf_controllers:active {
+    background: #107ce9;
+    opacity: .8;
+}
+
+.pdf_controllers>svg {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+
+@media screen and (max-width: 590px) {
+    .pdf_viewBtn {
+        margin-top: 16px;
+    }
+
+    .iconsM {
+        font-size: 25px;
+        height: 90px;
+        width: 90px;
+    }
+
+    .pdf_formMainDesc {
+        width: 100%;
+        color: red;
+        display: flex;
+        align-items: center;
+        padding: 0px 20px;
+        font-size: 14px;
+    }
+
+
+
+    .pdf_formMain {
+        height: 100%;
+    }
+
+    .pdf_formFISH {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+        margin: 25px 0px;
+    }
+
+    .pdf_formContainer {
+        margin: 0 10px;
+    }
+}
+
+.pdf__mainContainer {
+    display: flex;
+    transform: scale(0.44) translate(-50%);
+    position: absolute;
+    left: 50%;
+    transform-origin: top left;
+}
+
+@media screen and (max-width: 425px) {
+    .pdf_formMainTitle {
+        color: dodgerBlue;
+        padding: 30px 15px;
+        font-size: 25px;
+    }
+
+    .pdf_controllersWrapper {
+        width: 100%;
+        margin: 0 0;
+        padding: 10px;
+        display: flex;
+        justify-content: space-evenly;
+        height: 60px;
+        /* background-color: aquamarine;
+        position: absolute;
+        bottom: 0;
+        left: 0; */
+    }
+
+    .pdf_inputFISH {
+        width: 100%;
+    }
+
+
+    .pdf_controllers {
+        padding: 8px 18px;
+        border: none;
+        border-radius: 5px;
+        background-color: dodgerblue;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        margin: 0 2px;
+    }
+}
