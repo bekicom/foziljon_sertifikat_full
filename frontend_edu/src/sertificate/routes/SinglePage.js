@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import Logo from '../assets/main/IMGBaner.png'
@@ -8,7 +8,6 @@ import Logo from '../assets/main/IMGBaner.png'
 function Single() {
 
   let data = JSON.parse(sessionStorage.getItem('data')) || {}
-  console.log(data);
   return (
     <div className="pdf_Cont">
       <div className="darft_container ">

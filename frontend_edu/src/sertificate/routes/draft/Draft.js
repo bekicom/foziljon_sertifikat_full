@@ -20,7 +20,6 @@ function Draft() {
     id: '',
     givenDate: ''
   });
-  const [error, setError] = useState(null);
   const componentRef = useRef();
   const { id } = useParams();
 
@@ -30,13 +29,7 @@ function Draft() {
         setIsLoading(true);
         const response = await axios.get(`certificate/check/${id}`);
         setData(response.data);
-        setError(null);
       } catch (error) {
-        if (error.response && error.response.status === 404) {
-          setError("Sertifikat topilmadi. Iltimos, ID ni tekshirib qaytadan urinib ko'ring.");
-        } else {
-          setError("Sertifikatni olishda xatolik. Iltimos, qaytadan urinib ko'ring.");
-        }
         console.error(error);
       } finally {
         setIsLoading(false);

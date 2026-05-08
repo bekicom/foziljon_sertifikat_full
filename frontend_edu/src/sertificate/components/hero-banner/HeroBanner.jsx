@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./HeroBanner.css";
 import { FiSearch, FiDownload } from "react-icons/fi";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import axios from '../../api/api';
 import hero_banner from "../../assets/main/bg.png";
 import Header from "../header/Header";
