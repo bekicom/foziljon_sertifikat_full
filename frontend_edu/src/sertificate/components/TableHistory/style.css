@@ -1,70 +1,132 @@
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
+    height: 8px;
     background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #bebebe;
-    border-radius: 15px;
+    background: rgba(138, 30, 45, 0.38);
+    border-radius: 999px;
 }
 
 .allLicense {
-    width: 90%;
-    height: 500px;
-    margin: 50px auto;
-    background: #F7F7F7;
-    border-radius: 10px;
+    width: min(1180px, calc(100% - 40px));
+    min-height: 560px;
+    margin: 28px auto 50px;
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    border-radius: 20px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 247, 248, 0.96));
     overflow: auto;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.1);
 }
 
 .allLicenseContainer {
-    width: calc(100% - 40px);
+    width: calc(100% - 48px);
     margin: auto;
-    padding: 30px 0;
+    padding: 30px 0 36px;
+}
+
+.SearchBar {
+    width: 100%;
+    min-height: 80px;
+    display: grid;
+    grid-template-columns: minmax(240px, 340px) 1fr;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.SearchBar>div {
+    width: 100%;
 }
 
 .allLicenseTitle {
-    color: dodgerblue;
+    margin: 0;
+    color: #111827;
+    font-size: 30px;
+    line-height: 1.08;
+    font-weight: 900;
+}
+
+.SearchBar .ant-input-affix-wrapper {
+    min-height: 46px;
+    border-radius: 12px;
+    border-color: #d8dee8;
+}
+
+.SearchBar .ant-input-affix-wrapper:focus,
+.SearchBar .ant-input-affix-wrapper-focused {
+    border-color: #8a1e2d;
+    box-shadow: 0 0 0 4px rgba(138, 30, 45, 0.12);
 }
 
 .driverTableContainer {
     width: 100%;
 }
 
+.driverTableContainer .ant-tabs-nav {
+    margin-bottom: 18px;
+}
+
+.driverTableContainer .ant-tabs-tab {
+    padding: 8px 0;
+    font-weight: 800;
+}
+
+.driverTableContainer .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #8a1e2d;
+}
+
+.driverTableContainer .ant-tabs-ink-bar {
+    background: #8a1e2d;
+}
+
 .driverTable {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    background: #ffffff;
 }
 
 .driverTableHead th {
-    text-align-last: left;
-    padding: 16px;
-    border-bottom: 2px solid #999;
-    text-wrap: nowrap;
-
+    padding: 18px 16px;
+    background: #fff7f8;
+    color: #334155;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 900;
+    white-space: nowrap;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 .driverTableBody td {
-    border: 1px solid #e4e3e3;
-    text-wrap: nowrap;
-
-    padding: 16px;
+    min-height: 68px;
+    padding: 18px 16px;
+    border-bottom: 1px solid #edf2f7;
+    color: #111827;
+    white-space: nowrap;
     position: relative;
 }
 
 .driverTableBody tr:nth-child(even) {
-    background: #00000010;
+    background: #f8fafc;
 }
 
 .driverTableBody tr:hover {
-    background: #00000008;
+    background: #fff7f8;
 }
 
 .driverTableBodyDelBtn {
-    padding: 10px 30px;
+    min-width: 118px;
+    min-height: 40px;
+    padding: 0 16px;
     border: none;
-    border-radius: 5px;
-    background: crimson;
+    border-radius: 12px;
+    background: #8a1e2d;
     color: #fff;
     cursor: pointer;
     position: absolute;
@@ -73,21 +135,23 @@
     transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 800;
 }
 
 .driverTableBodyDelBtn svg {
     font-size: 18px;
-    margin-right: 6px;
+    margin-right: 0;
 }
 
 .driverTableBodyPDFBtn {
-    background: dodgerblue;
+    background: #1f2937;
 }
 
 .driverTableBodyDelBtn:hover {
-    opacity: .7;
+    opacity: 0.88;
 }
-
 
 .driverModalMain {
     width: 100%;
@@ -95,67 +159,68 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 10;
+    z-index: 30;
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 .driverModalContainer {
-    width: 500px;
-    height: 300px;
+    width: min(420px, calc(100% - 28px));
+    min-height: 260px;
+    padding: 28px;
     background: #fff;
-    border-radius: 6px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* position: relative; */
-    z-index: 12;
-    animation: modalTable1 .5s forwards;
+    z-index: 32;
+    animation: modalTable1 .28s forwards;
     opacity: 0;
-    transform: translateY(-50px);
+    transform: translateY(-16px);
+    box-shadow: 0 28px 80px rgba(15, 23, 42, 0.24);
 }
 
 @keyframes modalTable1 {
     to {
         opacity: 1;
-        transform: translateY(0px);
+        transform: translateY(0);
     }
 }
 
 .driverModalContainer svg {
-    font-size: 50px;
-    margin-bottom: 20px;
-    color: crimson;
+    font-size: 48px;
+    margin-bottom: 18px;
+    color: #8a1e2d;
 }
 
 .driverModalContainer h3 {
     padding-bottom: 20px;
-    color: dodgerblue;
-    font-weight: 400;
+    color: #111827;
+    font-weight: 850;
     font-size: 24px;
 }
 
 .driverModalContainer button {
     width: 120px;
-    height: 30px;
-    margin: 0 10px;
-    border-radius: 4px;
+    height: 40px;
+    margin: 0 8px;
+    border-radius: 12px;
     border: none;
     outline: none;
     color: #fff;
-    background: crimson;
+    background: #8a1e2d;
     cursor: pointer;
+    font-weight: 800;
 }
 
 .driverModalContainer button:last-child {
-    background: dodgerblue;
+    background: #1f2937;
 }
 
 .driverModalContainer button:hover {
-    opacity: .7;
+    opacity: .86;
 }
 
 .driverModalHide {
@@ -164,23 +229,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 11;
-    background: #00000033;
-    animation: modalTableCon1 .5s forwards;
+    z-index: 31;
+    background: rgba(15, 23, 42, 0.48);
+    animation: modalTableCon1 .28s forwards;
     opacity: 0;
-}
-
-
-.SearchBar {
-    width: 100%;
-    height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.SearchBar>div {
-    width: 40%;
 }
 
 @keyframes modalTableCon1 {
@@ -189,33 +241,27 @@
     }
 }
 
-@media screen and (max-width: 500px) {
-    .driverTableBodyDelBtn {
-        padding: 6px 10px;
-        border: none;
-        border-radius: 5px;
-        background: crimson;
-        color: #fff;
-        cursor: pointer;
-        /* position: absolute; */
-        /* top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%); */
-        display: flex;
-        align-items: center;
+@media screen and (max-width: 760px) {
+    .allLicense {
+        width: min(100% - 24px, 1180px);
+        margin-top: 18px;
     }
 
-    .SearchBar>div {
-        width: 100%;
+    .allLicenseContainer {
+        width: calc(100% - 28px);
+        padding: 22px 0 28px;
+    }
+
+    .SearchBar {
+        grid-template-columns: 1fr;
+        gap: 14px;
     }
 
     .allLicenseTitle {
-        color: dodgerblue;
-        font-size: 15px;
-        display: none;
+        font-size: 24px;
     }
 
-    .driverTableBodyPDFBtn {
-        background: dodgerblue;
+    .driverTable {
+        min-width: 720px;
     }
 }

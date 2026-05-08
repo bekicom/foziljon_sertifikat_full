@@ -4,7 +4,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { AuthContext } from "./sertificate/context/AuthContext";
 import { useAuthContext } from './sertificate/hooks/useAuthContext';
 import { ToastContainer } from "react-toastify";
-import Register from "./sertificate/pages/register/Register";
 import History from "./sertificate/components/TableHistory/History";
 import 'react-toastify/dist/ReactToastify.css';
 import LoadingTruck from "./sertificate/components/loading/LoadingTruck";
@@ -30,7 +29,6 @@ function App() {
           <Route path="/check/:id" element={<Draft />} />
           <Route path="/single/:id" element={user ? <Single /> : <Navigate to="/login" />} />
           <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
-          <Route path="/register" element={user ? <Register /> : <Navigate to="/login" />} />
           <Route path="/admin" element={user ? <Admin /> : <Navigate to="/login" />}>
             <Route path="dasturlash" element={<ItPdf />} />
             <Route path="historyPdf" element={<History />} />

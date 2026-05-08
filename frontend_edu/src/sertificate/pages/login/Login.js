@@ -45,41 +45,71 @@ function Login() {
 
   return (
     <div className="login">
-      <h1>Tizimga kirish uchun login <br /> parolingizni kiriting!</h1>
-      {error && <div className="error">{error}</div>}
-      <form onSubmit={handleSubmit}>
-        <div className="login__input">
-          <div className="iconreg">
-            <BsPerson />
-          </div>
-          <input
-            type="text"
-            name="username"
-            placeholder="Foydalanuvchi ismingiz"
-            value={formData.username}
-            onChange={handleChange}
-          />
+      <div className="login__brand">
+        <div className="login__badge">Yagona Buxgalteriya</div>
+        <h1>Sertifikat boshqaruv paneli</h1>
+        <p>Diplom va sertifikatlarni yaratish, ro'yxatda ko'rish va PDF shaklida chiqarish tizimi.</p>
+        <div className="login__stats">
+          <span>QR tekshiruv</span>
+          <span>PDF chiqarish</span>
+          <span>MongoDB baza</span>
+        </div>
+      </div>
+
+      <div className="login__panel">
+        <div className="login__panelHead">
+          <span>Admin</span>
+          <h2>Tizimga kirish</h2>
+          <p>Login va parolingizni kiriting</p>
         </div>
 
-        <div className="login__input">
-          <div className="iconreg">
-            <RiLockPasswordLine />
-          </div>
-          <input
-            type={eyeOpen ? "password" : "text"}
-            name="password"
-            placeholder="Foydalanuvchi parolingiz"
-            value={formData.password}
-            onChange={handleChange}
-          />
-          <span onClick={() => setEyeOpen(!eyeOpen)} className="eye">{eyeOpen ? <BsEyeSlashFill /> : <BsEyeFill />}</span>
-        </div>
+        {error && <div className="error">{error}</div>}
 
-        <button disabled={isLoading} className="logbtn" type="submit">Tizimga kiring</button>
-        <Link to="/">
-          <button disabled={isLoading} className="btnOutLog" type="submit">Asosiy sahifa</button>
-        </Link>
-      </form>
+        <form onSubmit={handleSubmit}>
+          <label>Foydalanuvchi nomi</label>
+          <div className="login__input">
+            <div className="iconreg">
+              <BsPerson />
+            </div>
+            <input
+              type="text"
+              name="username"
+              placeholder="admin"
+              value={formData.username}
+              onChange={handleChange}
+            />
+          </div>
+
+          <label>Parol</label>
+          <div className="login__input">
+            <div className="iconreg">
+              <RiLockPasswordLine />
+            </div>
+            <input
+              type={eyeOpen ? "text" : "password"}
+              name="password"
+              placeholder="Parolingiz"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            <button
+              type="button"
+              onClick={() => setEyeOpen(!eyeOpen)}
+              className="eye"
+              aria-label={eyeOpen ? "Parolni yashirish" : "Parolni ko'rsatish"}
+            >
+              {eyeOpen ? <BsEyeSlashFill /> : <BsEyeFill />}
+            </button>
+          </div>
+
+          <button disabled={isLoading} className="logbtn" type="submit">
+            {isLoading ? "Tekshirilmoqda..." : "Panelga kirish"}
+          </button>
+          <Link to="/" className="btnOutLog">
+            Asosiy sahifa
+          </Link>
+        </form>
+      </div>
     </div>
   );
 }

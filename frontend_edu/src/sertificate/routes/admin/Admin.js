@@ -28,7 +28,6 @@ const Admin = () => {
                     <NavLink className="link" activeclassname='selected_tab' to={`/admin/dasturlash`}>Sertifikat yaratish</NavLink>
 
                     <NavLink className="link" activeclassname='selected_tab' to={`/admin/historyPdf`}>Sertifikatlar ro'yhati</NavLink>
-                    <NavLink className="link" activeclassname='selected_tab' to={`/register`}>Adminni ro'yhatga olish</NavLink>
                     <button className="link" onDoubleClick={logout}>Log out</button>
 
                 </div>

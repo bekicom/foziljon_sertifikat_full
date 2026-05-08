@@ -113,7 +113,7 @@ function Register() {
             <RiLockPasswordLine />
           </div>
           <input
-            type={eyeOpen ? "password" : "text"}
+            type={eyeOpen ? "text" : "password"}
             placeholder="Foydalanuvchi parolingiz"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
