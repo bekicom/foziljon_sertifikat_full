@@ -71,7 +71,7 @@ const Cert = React.forwardRef((props, ref) => {
                 </div>
 
                 <div className="QRBOX">
-                    <QRCode value={`${URL}/check/${id}`} />
+                    <QRCode value={`${URL}/check/${encodeURIComponent(id)}`} />
                 </div>
                 <div className="sanaBoz">
                     <b>{givenDate}</b>

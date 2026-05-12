@@ -30,7 +30,7 @@ export const AuthContextProvider = ({ children }) => {
     }
   }, [])
 
-  const URL = "https://yagonabuxgalter.vercel.app/"
+  const URL = (process.env.REACT_APP_PUBLIC_URL || window.location.origin).replace(/\/$/, "")
 
   return (
     <AuthContext.Provider value={{ ...state, dispatch, isLoading, setIsLoading, sensor, setSensor, URL, setSavaData, saveData }}>

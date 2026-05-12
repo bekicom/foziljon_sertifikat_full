@@ -69,11 +69,11 @@ const DipCertificat = React.forwardRef((props, ref) => {
         </div>
 
         <div className="QRCodedip1">
-          <QRCode value={`${URL}/check/${id}`} />
+          <QRCode value={`${URL}/check/${encodeURIComponent(id)}`} />
         </div>
 
         <div className="QRCodedip2">
-          <QRCode value={`${URL}/check/${id}`} />
+          <QRCode value={`${URL}/check/${encodeURIComponent(id)}`} />
         </div>
       </div>
 

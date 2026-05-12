@@ -20,6 +20,7 @@ function Draft() {
     id: '',
     givenDate: ''
   });
+  const [errorMessage, setErrorMessage] = useState("");
   const componentRef = useRef();
   const { id } = useParams();
 
@@ -27,10 +28,12 @@ function Draft() {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(`certificate/check/${id}`);
+        setErrorMessage("");
+        const response = await axios.get(`/certificate/check/${id}`);
         setData(response.data);
       } catch (error) {
         console.error(error);
+        setErrorMessage("Sertifikat topilmadi yoki server bilan aloqa yo'q.");
       } finally {
         setIsLoading(false);
       }
@@ -76,6 +79,11 @@ function Draft() {
         <div style={{ display: "none" }}>
           <PdfCertificate />
         </div>
+        {errorMessage && (
+          <div className="pdf_Box show">
+            <p>{errorMessage}</p>
+          </div>
+        )}
       </div>
       <br />
       <br />

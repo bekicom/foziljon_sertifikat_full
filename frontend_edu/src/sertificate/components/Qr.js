@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import QRCode from "react-qr-code";
+import { useParams } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
-function Qr({ match }) {
-    const [val, setVal] = useState("")
-    useEffect(() => {
-        setVal(prev => prev = "https://yagonabuxgalter.vercel.app/" + match.params.path)
-    }, [match])
+function Qr() {
+    const { path = "" } = useParams();
+    const { URL } = useContext(AuthContext);
+    const val = `${URL}/${path.replace(/^\/+/, "")}`;
+
     return (
         <div>
             <div className="qr" style={{ background: "red" }}>
