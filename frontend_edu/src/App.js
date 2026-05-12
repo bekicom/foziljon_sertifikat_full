@@ -1,5 +1,5 @@
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { AuthContext } from "./sertificate/context/AuthContext";
 import { useAuthContext } from './sertificate/hooks/useAuthContext';
@@ -18,6 +18,18 @@ import Admin from "./sertificate/routes/admin/Admin";
 function App() {
   const { user } = useAuthContext();
   const { isLoading } = useContext(AuthContext);
+
+  useEffect(() => {
+    const normalizedPath = window.location.pathname.replace(/\/{2,}/g, "/");
+
+    if (normalizedPath !== window.location.pathname) {
+      window.history.replaceState(
+        null,
+        "",
+        `${normalizedPath}${window.location.search}${window.location.hash}`
+      );
+    }
+  }, []);
 
   return (
     <>
