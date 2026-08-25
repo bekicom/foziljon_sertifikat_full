@@ -10,12 +10,13 @@ const certificateRoutes = require("./routes/certificate");
 const app = express();
 const port = process.env.PORT || 5000;
 let mongoReady = false;
+let mongoUnavailable = false;
 
 app.use(cors());
 app.use(express.json());
 
 async function connectDb() {
-  if (!process.env.DB_CONNECTION) {
+  if (!process.env.DB_CONNECTION || mongoUnavailable) {
     return;
   }
 
@@ -24,8 +25,14 @@ async function connectDb() {
     return;
   }
 
-  await mongoose.connect(process.env.DB_CONNECTION);
-  mongoReady = true;
+  try {
+    await mongoose.connect(process.env.DB_CONNECTION, { serverSelectionTimeoutMS: 5000 });
+    mongoReady = true;
+  } catch (error) {
+    mongoReady = false;
+    mongoUnavailable = true;
+    console.warn(`MongoDB ulanmagan (${error.message}). Lokal JSON rejimiga o'tildi.`);
+  }
 }
 
 app.use(async (req, res, next) => {
@@ -49,17 +56,17 @@ app.use("/certificate", certificateRoutes);
 if (require.main === module) {
   connectDb()
     .then(() => {
-      if (process.env.DB_CONNECTION) {
+      if (mongoReady) {
         console.log("MongoDB connected");
       } else {
-        console.warn("DB_CONNECTION topilmadi. Backend lokal JSON rejimida ishlaydi.");
+        console.warn("Backend lokal JSON rejimida ishlaydi.");
       }
       app.listen(port, () => {
         console.log(`Server running: http://localhost:${port}`);
       });
     })
     .catch((error) => {
-      console.error("MongoDB connection error:", error.message);
+      console.error("Backend ishga tushirish xatosi:", error.message);
       process.exit(1);
     });
 }

@@ -84,6 +84,19 @@ router.delete("/delete/:id", requireAuth, async (req, res) => {
     return res.status(403).json({ error: "Faqat root admin o'chira oladi" });
   }
 
+  if (!isMongoConnected()) {
+    const db = readDb();
+    const nextUsers = db.users.filter((item) => item._id !== req.params.id);
+
+    if (nextUsers.length === db.users.length) {
+      return res.status(404).json({ error: "User topilmadi" });
+    }
+
+    db.users = nextUsers;
+    writeDb(db);
+    return res.json({ message: "User o'chirildi" });
+  }
+
   const user = await User.findByIdAndDelete(req.params.id);
   if (!user) return res.status(404).json({ error: "User topilmadi" });
 

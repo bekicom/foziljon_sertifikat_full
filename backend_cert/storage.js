@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const mongoose = require("mongoose");
 
 const dataDir = path.join(__dirname, "data");
 const dataFile = path.join(dataDir, "db.json");
@@ -46,7 +47,7 @@ function writeDb(db) {
 }
 
 function isMongoConnected() {
-  return Boolean(process.env.DB_CONNECTION);
+  return mongoose.connection.readyState === 1;
 }
 
 module.exports = {
