@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 const dataDir = path.join(__dirname, "data");
 const dataFile = path.join(dataDir, "db.json");
+let forceLocalStorage = false;
 
 function ensureDb() {
   if (!fs.existsSync(dataDir)) {
@@ -47,11 +48,16 @@ function writeDb(db) {
 }
 
 function isMongoConnected() {
-  return mongoose.connection.readyState === 1;
+  return !forceLocalStorage && mongoose.connection.readyState === 1;
+}
+
+function useLocalStorage() {
+  forceLocalStorage = true;
 }
 
 module.exports = {
   isMongoConnected,
+  useLocalStorage,
   readDb,
   writeDb,
 };

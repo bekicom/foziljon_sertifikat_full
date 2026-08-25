@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const { useLocalStorage } = require("./storage");
 
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
@@ -31,6 +32,7 @@ async function connectDb() {
   } catch (error) {
     mongoReady = false;
     mongoUnavailable = true;
+    useLocalStorage();
     console.warn(`MongoDB ulanmagan (${error.message}). Lokal JSON rejimiga o'tildi.`);
   }
 }
@@ -40,8 +42,11 @@ app.use(async (req, res, next) => {
     await connectDb();
     next();
   } catch (error) {
-    console.error("MongoDB connection error:", error.message);
-    res.status(500).json({ error: "Database connection error" });
+    mongoReady = false;
+    mongoUnavailable = true;
+    useLocalStorage();
+    console.warn(`MongoDB so'rovi bajarilmadi (${error.message}). Lokal JSON rejimi davom etadi.`);
+    next();
   }
 });
 

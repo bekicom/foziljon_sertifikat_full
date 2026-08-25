@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-const { isMongoConnected, readDb } = require("../storage");
+const { isMongoConnected, useLocalStorage, readDb } = require("../storage");
 
 module.exports = async function requireAuth(req, res, next) {
   const authHeader = req.headers.authorization || "";
@@ -12,6 +12,10 @@ module.exports = async function requireAuth(req, res, next) {
 
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET || "local-dev-secret");
+
+    if (payload.local) {
+      useLocalStorage();
+    }
 
     if (!isMongoConnected()) {
       const db = readDb();
