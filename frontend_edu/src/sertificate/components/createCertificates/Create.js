@@ -68,6 +68,8 @@ const ItPdf = () => {
   };
 
   const createCertificate = async () => {
+    if (newCertificate) return;
+
     setNewCertificate(true);
     setIsLoading(true);
     const certificateData = {
@@ -80,17 +82,18 @@ const ItPdf = () => {
       prosent: prosent,
     };
 
-    await axios
-      .post("certificate", certificateData)
-      .then((res) => {
-        navigate("/admin/historyPdf");
-        setNewCertificate(null);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        console.log(err);
-      });
+    try {
+      await axios.post("/certificate", certificateData);
+      toast.success("Sertifikat muvaffaqiyatli qayd etildi");
+      navigate("/admin/historyPdf");
+    } catch (err) {
+      const message = err.response?.data?.error || "Sertifikatni qayd etishda xato yuz berdi";
+      toast.error(message);
+      console.error(err);
+    } finally {
+      setNewCertificate(null);
+      setIsLoading(false);
+    }
   };
 
   const FilterCertificate = () => {
@@ -234,7 +237,14 @@ const ItPdf = () => {
 
         <div className="pdf_controllersWrapper">
           <button className="pdf_controllers" onClick={view}> <FiChevronLeft /> Orqaga</button>
-          <button className="pdf_controllers" onClick={createCertificate}> {newCertificate ? <Loading /> : <FiSave />} Setifikatni qayd etish</button>
+          <button
+            type="button"
+            className="pdf_controllers"
+            onClick={createCertificate}
+            disabled={Boolean(newCertificate)}
+          >
+            {newCertificate ? <Loading /> : <FiSave />} Sertifikatni qayd etish
+          </button>
           <ReactToPrint
             trigger={() => <button className="pdf_controllers"> <FiDownload /> Yuklab olish</button>}
             content={() => componentRef.current}

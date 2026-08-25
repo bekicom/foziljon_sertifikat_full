@@ -14,6 +14,18 @@ module.exports = async function requireAuth(req, res, next) {
     const payload = jwt.verify(token, process.env.JWT_SECRET || "local-dev-secret");
 
     if (payload.local) {
+      if (isMongoConnected()) {
+        const username = (process.env.ADMIN_USERNAME || "admin").trim().toLowerCase();
+        const mongoAdmin = await User.findOne({ username }).select("-password");
+
+        if (!mongoAdmin || !mongoAdmin.permission) {
+          return res.status(401).json({ error: "Unauthorized" });
+        }
+
+        req.user = mongoAdmin;
+        return next();
+      }
+
       useLocalStorage();
     }
 
