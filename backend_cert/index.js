@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { useLocalStorage } = require("./storage");
 
@@ -39,17 +38,6 @@ async function connectDb() {
 }
 
 app.use(async (req, res, next) => {
-  const authHeader = req.headers.authorization || "";
-  const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : null;
-  const tokenPayload = token ? jwt.decode(token) : null;
-  const usesLocalLogin = req.method === "POST" && req.path === "/auth/login";
-  const usesPublicLocalCheck = req.method === "GET" && req.path.startsWith("/certificate/check/");
-
-  if (usesLocalLogin || usesPublicLocalCheck || tokenPayload?.local) {
-    useLocalStorage();
-    return next();
-  }
-
   try {
     await connectDb();
     next();

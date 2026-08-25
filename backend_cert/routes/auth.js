@@ -42,15 +42,6 @@ router.post("/login", async (req, res) => {
     return res.status(400).json({ error: "Login va parol kerak" });
   }
 
-  const localUserExists = readDb().users.some(
-    (item) => item.username === username && item.password === password && item.permission
-  );
-
-  if (localUserExists) {
-    useLocalStorage();
-    return loginFromLocalStorage(username, password, res);
-  }
-
   try {
     if (!isMongoConnected()) {
       return loginFromLocalStorage(username, password, res);
