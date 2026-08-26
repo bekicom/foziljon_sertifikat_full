@@ -35,7 +35,7 @@ const ItPdf = () => {
   };
 
   const processName = (name) => {
-    const nameParts = name.trim().split(" ");
+    const nameParts = name.trim().split(/\s+/);
     if (nameParts.length === 1) {
       return { firstname: nameParts[0], lastname: "", other: "" };
     } else if (nameParts.length === 2) {
@@ -53,19 +53,39 @@ const ItPdf = () => {
 
   const view = (e) => {
     e.preventDefault();
-    const processedName = processName(fullname);
-    setNameObject(processedName);
-    setTimeout(() => {
-      setSensor(true);
-    }, 1000);
+    const formData = new FormData(e.currentTarget);
+    const enteredFullname = String(formData.get("fullname") || "").trim();
+    const enteredCourseName = String(formData.get("courseName") || "");
+    const enteredDate = String(formData.get("givenDate") || "");
+    const enteredProsent = String(formData.get("prosent") || "");
 
-    if (fullname === "" || courseName === "" || selectedFromDate === "") {
+    if (
+      !enteredFullname ||
+      !enteredCourseName ||
+      !enteredDate ||
+      (enteredCourseName === "cert" && !enteredProsent)
+    ) {
       toast.warn("Bo'sh joylarni to'ldiring!");
-    } else {
-      setId(nanoid());
-      setShow((prev) => !prev);
+      return;
     }
+
+    const formattedDate = moment(enteredDate, "YYYY-MM-DD", true).format("DD/MM/YYYY");
+    if (formattedDate === "Invalid date") {
+      toast.warn("Sanani to'g'ri kiriting!");
+      return;
+    }
+
+    setFullname(enteredFullname);
+    setCourseName(enteredCourseName);
+    setSelectedFromDate(formattedDate);
+    setProsent(enteredProsent);
+    setNameObject(processName(enteredFullname));
+    setId(nanoid());
+    setShow(false);
+    setTimeout(() => setSensor(true), 1000);
   };
+
+  const goBack = () => setShow(true);
 
   const createCertificate = async () => {
     if (newCertificate) return;
@@ -166,6 +186,7 @@ const ItPdf = () => {
                   <label htmlFor="">FIO</label>
                   <input
                     type="text"
+                    name="fullname"
                     placeholder="Familya, Ism, Otasining ismi"
                     className="pdf_inputFISH"
                     required
@@ -184,8 +205,8 @@ const ItPdf = () => {
                       className="pdf_inputFISHCat"
                       value={courseName}
                       onChange={(e) => setCourseName(e.target.value)}
-                      name=""
-                      id=""
+                      name="courseName"
+                      required
                     >
                       <option value="" disabled hidden>Kategoriyani tanlang!</option>
                       <option value="cert">Sertifikat</option>
@@ -193,6 +214,11 @@ const ItPdf = () => {
                     </select>
                     <input
                       onChange={(e) => setProsent(e.target.value)}
+                      name="prosent"
+                      value={prosent}
+                      required={courseName === "cert"}
+                      min="0"
+                      max="100"
                       className={`pdf_inputFISHRus 
                         ${courseName === "cert"
                           ? "rusopen"
@@ -207,12 +233,8 @@ const ItPdf = () => {
                   <label htmlFor="">Berilgan sanasi</label>
                   <input
                     className="pdf_inputFISH"
-                    onChange={(e) => {
-                      const selectedDate = e.target.value;
-                      const today = moment().format('DD/MM/YYYY');
-                      const formattedDate = selectedDate ? moment(selectedDate).format('DD/MM/YYYY') : today;
-                      setSelectedFromDate(formattedDate);
-                    }}
+                    name="givenDate"
+                    required
                     type="date"
                   />
                 </div>
@@ -236,7 +258,7 @@ const ItPdf = () => {
         <FilterCertificate />
 
         <div className="pdf_controllersWrapper">
-          <button className="pdf_controllers" onClick={view}> <FiChevronLeft /> Orqaga</button>
+          <button type="button" className="pdf_controllers" onClick={goBack}> <FiChevronLeft /> Orqaga</button>
           <button
             type="button"
             className="pdf_controllers"
