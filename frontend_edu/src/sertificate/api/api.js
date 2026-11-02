@@ -13,4 +13,21 @@ mainUrl.interceptors.request.use((config) => {
   return config;
 });
 
+// Token eskirgan yoki yaroqsiz bo'lsa (401) sessiyani tozalab, login sahifasiga o'tkazish
+mainUrl.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const isLogin = error.config?.url?.includes("/auth/login");
+    const hasSession = localStorage.getItem("userSert") || localStorage.getItem("user");
+
+    if (error.response?.status === 401 && !isLogin && hasSession) {
+      localStorage.removeItem("user");
+      localStorage.removeItem("userSert");
+      window.location.href = "/login";
+    }
+
+    return Promise.reject(error);
+  }
+);
+
 export default mainUrl;

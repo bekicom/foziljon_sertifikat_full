@@ -17,6 +17,8 @@ const History = () => {
   const [modal, setModal] = useState(false);
   const [deleteCertId, setDeleteCertId] = useState(null);
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
   // Ma'lumotlarni yuklash
@@ -24,7 +26,11 @@ const History = () => {
     axios
       .get("/certificate/all")
       .then((response) => setData(response?.data || []))
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setError("Sertifikatlarni yuklab bo'lmadi. Sahifani yangilang yoki qayta login qiling.");
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   // Qidiruv bo‘yicha filtrlash
@@ -199,8 +205,12 @@ const History = () => {
                 <PrintableCertificate />
               </div>
             </>
-          ) : (
+          ) : loading ? (
             <LoadingTruck />
+          ) : (
+            <p style={{ padding: "20px", textAlign: "center" }}>
+              {error || "Sertifikatlar topilmadi"}
+            </p>
           )}
         </div>
       </div>
