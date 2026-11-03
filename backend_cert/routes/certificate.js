@@ -45,6 +45,7 @@ router.post("/", requireAuth, async (req, res) => {
     if (error.code === 11000) {
       return res.status(409).json({ error: "Bu ID bilan sertifikat mavjud" });
     }
+    console.error("Sertifikat yaratishda xato:", error.message);
     res.status(500).json({ error: "Sertifikat yaratishda xato" });
   }
 });
@@ -64,6 +65,7 @@ router.get("/check/:id", async (req, res) => {
 
     res.json(certificate);
   } catch (error) {
+    console.error("Sertifikatni olishda xato:", error.message);
     res.status(500).json({ error: "Sertifikatni olishda xato" });
   }
 });
@@ -78,6 +80,7 @@ router.get("/all", requireAuth, async (req, res) => {
     const certificates = await Certificate.find().sort({ createdAt: -1 });
     res.json(certificates);
   } catch (error) {
+    console.error("Sertifikatlar ro'yxatini olishda xato:", error.message);
     res.status(500).json({ error: "Sertifikatlar ro'yxatini olishda xato" });
   }
 });
@@ -102,6 +105,7 @@ router.delete("/delete/:id", requireAuth, async (req, res) => {
 
     res.json({ message: "Sertifikat o'chirildi" });
   } catch (error) {
+    console.error("Sertifikatni o'chirishda xato:", error.message);
     res.status(500).json({ error: "Sertifikatni o'chirishda xato" });
   }
 });

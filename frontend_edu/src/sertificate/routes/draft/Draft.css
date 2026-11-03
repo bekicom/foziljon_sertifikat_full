@@ -60,6 +60,16 @@
     align-items: center;
 }
 
+.pdf_Box>p {
+    margin: 0 0 14px;
+    color: #ffffff;
+    text-align: center;
+}
+
+#qrBarBox.hide {
+    display: none;
+}
+
 #qrBarBox {
     width: min(480px, calc(100% - 32px));
     min-height: 260px;

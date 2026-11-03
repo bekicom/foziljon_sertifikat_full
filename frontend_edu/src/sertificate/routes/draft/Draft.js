@@ -21,26 +21,53 @@ function Draft() {
     givenDate: ''
   });
   const [errorMessage, setErrorMessage] = useState("");
+  const [canRetry, setCanRetry] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
   const componentRef = useRef();
   const { id } = useParams();
 
   useEffect(() => {
+    let cancelled = false;
+
     const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        setErrorMessage("");
-        const response = await axios.get(`/certificate/check/${id}`);
-        setData(response.data);
-      } catch (error) {
-        console.error(error);
-        setErrorMessage("Sertifikat topilmadi yoki server bilan aloqa yo'q.");
-      } finally {
-        setIsLoading(false);
+      setIsLoading(true);
+      setErrorMessage("");
+      setCanRetry(false);
+
+      // Server "uyqudan" uyg'onayotganda birinchi so'rov xato berishi mumkin: 3 martagacha qayta uriniladi
+      for (let attempt = 1; attempt <= 3 && !cancelled; attempt++) {
+        try {
+          const response = await axios.get(`/certificate/check/${id}`);
+          if (!cancelled) setData(response.data);
+          break;
+        } catch (error) {
+          console.error(error);
+
+          if (error.response?.status === 404) {
+            if (!cancelled) setErrorMessage("Sertifikat topilmadi.");
+            break;
+          }
+
+          if (attempt === 3) {
+            if (!cancelled) {
+              setErrorMessage("Server bilan aloqa yo'q. Qayta urinib ko'ring.");
+              setCanRetry(true);
+            }
+          } else {
+            await new Promise((resolve) => setTimeout(resolve, attempt * 1000));
+          }
+        }
       }
+
+      setIsLoading(false);
     };
 
     fetchData();
-  }, [id, setIsLoading]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [id, reloadKey, setIsLoading]);
 
   const PdfCertificate = () => {
     if (data.courseName === "dip") {
@@ -82,6 +109,11 @@ function Draft() {
         {errorMessage && (
           <div className="pdf_Box show">
             <p>{errorMessage}</p>
+            {canRetry && (
+              <button className="pdf_controllers" onClick={() => setReloadKey((key) => key + 1)}>
+                Qayta urinish
+              </button>
+            )}
           </div>
         )}
       </div>
