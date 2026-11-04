@@ -3,6 +3,7 @@ import './style.css';
 import Bux from './img/buxred.png';
 import p1 from './img/p1.png';
 import p2 from './img/p2.png';
+import banner from './img/banner.png';
 import QRCode from "react-qr-code";
 import { AuthContext } from "../../../context/AuthContext";
 
@@ -47,6 +48,7 @@ const Cert = React.forwardRef((props, ref) => {
                 <div className="Border">
                     <div className="border_box">
                         <div className="border_box_right">
+                            <img className="border_box_bg" src={banner} alt="" />
                             <b>"Buxgalteriya: 1C" o'quv kurslarini</b>
                         </div>
                         <div className="border_box_right1"></div>
